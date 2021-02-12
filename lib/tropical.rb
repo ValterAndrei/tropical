@@ -17,7 +17,7 @@ module Tropical
     end
 
     def average_temp_by_days
-      group_by_days = organize_values.group_by { |item| item[:datetime].to_date }
+      group_by_days = list.group_by { |item| item[:datetime].to_date }
       days = []
 
       group_by_days.each do |day, temps|
@@ -30,15 +30,25 @@ module Tropical
     end
 
     def current_date
-      organize_values.first[:datetime]
+      list.first[:datetime]
     end
 
     def current_temp
-      organize_values.first[:temp]
+      list.first[:temp]
     end
 
     def current_weather
-      organize_values.first[:description]
+      list.first[:description]
+    end
+
+    def list
+      data['list'].map do |list_item|
+        {
+          datetime: Time.at(list_item['dt']),
+          temp: list_item['main']['temp'],
+          description: list_item['weather'].first['description']
+        }
+      end
     end
 
     private
@@ -51,16 +61,6 @@ module Tropical
       end
 
       BASE_URL + link
-    end
-
-    def organize_values
-      data['list'].map do |list_item|
-        {
-          datetime: Time.at(list_item['dt']),
-          temp: list_item['main']['temp'],
-          description: list_item['weather'].first['description']
-        }
-      end
     end
 
     def post(request_params)
