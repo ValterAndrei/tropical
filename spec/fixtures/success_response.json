@@ -1,0 +1,128 @@
+{
+  "cod": "200",
+  "message": 0,
+  "cnt": 40,
+  "list": [
+    {
+      "dt": 1613174400,
+      "main": {
+        "temp": 19.77,
+        "feels_like": 21.85,
+        "temp_min": 18.48,
+        "temp_max": 19.77,
+        "pressure": 1016,
+        "sea_level": 1016,
+        "grnd_level": 924,
+        "humidity": 88,
+        "temp_kf": 1.29
+      },
+      "weather": [
+        {
+          "id": 500,
+          "main": "Rain",
+          "description": "chuva leve",
+          "icon": "10n"
+        }
+      ],
+      "clouds": {
+        "all": 95
+      },
+      "wind": {
+        "speed": 0.85,
+        "deg": 105
+      },
+      "visibility": 10000,
+      "pop": 0.65,
+      "rain": {
+        "3h": 0.1
+      },
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2021-02-13 00:00:00"
+    },
+    {
+      "dt": 1613185200,
+      "main": {
+        "temp": 19.09,
+        "feels_like": 20.99,
+        "temp_min": 18.56,
+        "temp_max": 19.09,
+        "pressure": 1015,
+        "sea_level": 1015,
+        "grnd_level": 924,
+        "humidity": 90,
+        "temp_kf": 0.53
+      },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "nublado",
+          "icon": "04n"
+        }
+      ],
+      "clouds": {
+        "all": 98
+      },
+      "wind": {
+        "speed": 0.93,
+        "deg": 98
+      },
+      "visibility": 10000,
+      "pop": 0.23,
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2021-02-13 03:00:00"
+    },
+    {
+      "dt": 1613196000,
+      "main": {
+        "temp": 18.55,
+        "feels_like": 20.54,
+        "temp_min": 18.38,
+        "temp_max": 18.55,
+        "pressure": 1013,
+        "sea_level": 1013,
+        "grnd_level": 922,
+        "humidity": 91,
+        "temp_kf": 0.17
+      },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "nublado",
+          "icon": "04n"
+        }
+      ],
+      "clouds": {
+        "all": 99
+      },
+      "wind": {
+        "speed": 0.59,
+        "deg": 91
+      },
+      "visibility": 10000,
+      "pop": 0.39,
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2021-02-13 06:00:00"
+    }
+   ],
+  "city": {
+    "id": 3468353,
+    "name": "Caconde",
+    "coord": {
+      "lat": -21.5294,
+      "lon": -46.6439
+    },
+    "country": "BR",
+    "population": 12434,
+    "timezone": -10800,
+    "sunrise": 1613120120,
+    "sunset": 1613166388
+  }
+}
