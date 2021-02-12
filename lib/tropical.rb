@@ -1,19 +1,19 @@
-require 'date'
-require 'json'
-require 'net/http'
-require 'uri'
+require "date"
+require "json"
+require "net/http"
+require "uri"
 
 module Tropical
   class OpenWeatherMap
-    BASE_URL = 'https://api.openweathermap.org/data/2.5/forecast?'.freeze
+    BASE_URL = "https://api.openweathermap.org/data/2.5/forecast?".freeze
 
-    attr_reader :data
+    attr_reader :data, :status
 
     def initialize(params)
       request_params = build_request_params(params)
       response       = post(request_params)
 
-      @data = JSON.parse(response.read_body)
+      load_data(response)
     end
 
     def average_temp_by_days
@@ -42,11 +42,11 @@ module Tropical
     end
 
     def list
-      data['list'].map do |list_item|
+      data["list"].map do |list_item|
         {
-          datetime: Time.at(list_item['dt']),
-          temp: list_item['main']['temp'],
-          description: list_item['weather'].first['description']
+          datetime: Time.at(list_item["dt"]),
+          temp: list_item["main"]["temp"],
+          description: list_item["weather"].first["description"]
         }
       end
     end
@@ -54,13 +54,25 @@ module Tropical
     private
 
     def build_request_params(params)
-      link = ''
+      link = ""
 
       params.each do |k, v|
         link += "&#{k}=#{v}" if v.is_a?(String) && !v.empty?
       end
 
       BASE_URL + link
+    end
+
+    def load_data(response)
+      @status = response.code
+      @data = case response
+              when Net::HTTPSuccess
+                JSON.parse(response.body)
+              when Net::HTTPUnauthorized
+                { error: "#{response.message}: appid is invalid." }
+              else
+                { error: response.message }
+              end
     end
 
     def post(request_params)
