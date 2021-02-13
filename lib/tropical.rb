@@ -1,3 +1,4 @@
+require "active_support/all"
 require "date"
 require "json"
 require "net/http"
@@ -82,7 +83,7 @@ module Tropical
       link = ""
 
       params.each do |k, v|
-        link += "&#{k}=#{v}" if v.is_a?(String) && !v.empty?
+        link += "&#{k}=#{v}" if v.is_a?(String) && v.present?
       end
 
       BASE_URL + link
