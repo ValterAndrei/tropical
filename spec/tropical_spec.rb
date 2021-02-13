@@ -63,6 +63,12 @@ RSpec.describe Tropical::OpenWeatherMap do
       end
     end
 
+    describe "#city" do
+      it "return correct values" do
+        expect(subject.city).to eq("Caconde")
+      end
+    end
+
     it "return status" do
       expect(subject.status).to eq("200")
     end

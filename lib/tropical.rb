@@ -29,6 +29,10 @@ module Tropical
       days
     end
 
+    def city
+      data["city"]["name"]
+    end
+
     def current_date
       list.first[:datetime]
     end
