@@ -10,7 +10,7 @@ RSpec.describe Tropical::OpenWeatherMap do
       expect(response).to receive(:body) { response_body }
     end
 
-    let(:response_body) { File.read(File.expand_path("spec/fixtures/response.json")) }
+    let(:response_body) { File.read(File.expand_path("spec/fixtures/simple_response.json")) }
     let(:params) { { appid: "valid_appid", q: "caconde,br", lang: "pt_br", units: "metric" } }
 
     subject { described_class.new(params) }
@@ -66,6 +66,22 @@ RSpec.describe Tropical::OpenWeatherMap do
     describe "#city" do
       it "return correct values" do
         expect(subject.city).to eq("Caconde")
+      end
+    end
+
+    describe "#sumary" do
+      let(:response_body) { File.read(File.expand_path("spec/fixtures/complete_response.json")) }
+
+      it "return correct values" do
+        expect(subject.sumary).to eq(
+          "23°C e chuva moderada em Caconde em 13/02. "\
+          "Média para os próximos dias: "\
+          "21°C em 13/02, "\
+          "21°C em 14/02, "\
+          "22°C em 15/02, "\
+          "22°C em 16/02 e "\
+          "22°C em 17/02."
+        )
       end
     end
 

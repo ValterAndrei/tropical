@@ -55,6 +55,17 @@ module Tropical
       end
     end
 
+    def sumary
+      message = format_message
+
+      "#{message.current_temp}°C e #{current_weather} em #{city} em #{message.current_date}. "\
+      "Média para os próximos dias: #{message.first_day_average}°C em #{message.first_day_date}, "\
+      "#{message.second_day_average}°C em #{message.second_day_date}, "\
+      "#{message.third_day_average}°C em #{message.third_day_date}, "\
+      "#{message.fourth_day_average}°C em #{message.fourth_day_date} "\
+      "e #{message.fifth_day_average}°C em #{message.fifth_day_date}."
+    end
+
     private
 
     def build_request_params(params)
@@ -65,6 +76,23 @@ module Tropical
       end
 
       BASE_URL + link
+    end
+
+    def format_message
+      OpenStruct.new(
+        current_temp: current_temp.round,
+        current_date: current_date.strftime("%d/%m"),
+        first_day_average: average_temp_by_days[0][:average],
+        first_day_date: average_temp_by_days[0][:day].strftime("%d/%m"),
+        second_day_average: average_temp_by_days[1][:average],
+        second_day_date: average_temp_by_days[1][:day].strftime("%d/%m"),
+        third_day_average: average_temp_by_days[2][:average],
+        third_day_date: average_temp_by_days[2][:day].strftime("%d/%m"),
+        fourth_day_average: average_temp_by_days[3][:average],
+        fourth_day_date: average_temp_by_days[3][:day].strftime("%d/%m"),
+        fifth_day_average: average_temp_by_days[4][:average],
+        fifth_day_date: average_temp_by_days[4][:day].strftime("%d/%m")
+      )
     end
 
     def load_data(response)
