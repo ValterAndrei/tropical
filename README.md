@@ -8,7 +8,10 @@ TODO: Delete this and the text above, and describe your gem
 
 Add this line to your application's Gemfile:
 
-```rails
+```ruby
+gem 'tropical'
+
+# or
 gem 'tropical', git: 'https://github.com/valterandrei/tropical', branch: 'main'
 ```
 
