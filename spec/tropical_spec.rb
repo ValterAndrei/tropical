@@ -69,6 +69,34 @@ RSpec.describe Tropical::OpenWeatherMap do
       end
     end
 
+    describe "#scale" do
+      subject { described_class.new(params) }
+
+      context "when unit is metric" do
+        let(:params) { { units: "metric" } }
+
+        it "return correct value" do
+          expect(subject.scale).to eq("°C")
+        end
+      end
+
+      context "when unit is imperial" do
+        let(:params) { { units: "imperial" } }
+
+        it "return correct value" do
+          expect(subject.scale).to eq("°F")
+        end
+      end
+
+      context "when unit is standard or empty" do
+        let(:params) { { units: ["standard", nil].sample } }
+
+        it "return correct value" do
+          expect(subject.scale).to eq("°K")
+        end
+      end
+    end
+
     describe "#sumary" do
       let(:response_body) { File.read(File.expand_path("spec/fixtures/complete_response.json")) }
 

@@ -7,11 +7,11 @@ module Tropical
   class OpenWeatherMap
     BASE_URL = "https://api.openweathermap.org/data/2.5/forecast?".freeze
 
-    attr_reader :data, :status
+    attr_reader :data, :params, :status
 
     def initialize(params)
-      request_params = build_request_params(params)
-      response       = post(request_params)
+      @params  = params
+      response = post(request_params)
 
       load_data(response)
     end
@@ -55,20 +55,30 @@ module Tropical
       end
     end
 
+    def scale
+      units = params[:units]
+
+      return "°C" if units == "metric"
+      return "°F" if units == "imperial"
+
+      "°K"
+    end
+
     def sumary
       message = format_message
 
-      "#{message.current_temp}°C e #{current_weather} em #{city} em #{message.current_date}. "\
-      "Média para os próximos dias: #{message.first_day_average}°C em #{message.first_day_date}, "\
-      "#{message.second_day_average}°C em #{message.second_day_date}, "\
-      "#{message.third_day_average}°C em #{message.third_day_date}, "\
-      "#{message.fourth_day_average}°C em #{message.fourth_day_date} "\
-      "e #{message.fifth_day_average}°C em #{message.fifth_day_date}."
+      "#{message.current_temp}#{scale} e #{current_weather} em #{city} em #{message.current_date}. "\
+      "Média para os próximos dias: "\
+      "#{message.first_day_average}#{scale} em #{message.first_day_date}, "\
+      "#{message.second_day_average}#{scale} em #{message.second_day_date}, "\
+      "#{message.third_day_average}#{scale} em #{message.third_day_date}, "\
+      "#{message.fourth_day_average}#{scale} em #{message.fourth_day_date} "\
+      "e #{message.fifth_day_average}#{scale} em #{message.fifth_day_date}."
     end
 
     private
 
-    def build_request_params(params)
+    def request_params
       link = ""
 
       params.each do |k, v|
