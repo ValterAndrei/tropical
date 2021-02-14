@@ -22,7 +22,7 @@ module Tropical
     end
 
     def current_date
-      list.first[:datetime]
+      list.first[:dt]
     end
 
     def current_temp
@@ -60,17 +60,19 @@ module Tropical
     end
 
     def list
-      data["list"].map do |list_item|
+      data_list = data["list"].map do |list_item|
         {
-          datetime: Time.at(list_item["dt"]),
+          dt: Time.at(list_item["dt"]),
           temp: list_item["main"]["temp"],
           description: list_item["weather"].first["description"]
         }
       end
+
+      data_list.sort_by { |x| x[:dt] }
     end
 
     def average_temp_by_days
-      group_by_days = list.group_by { |item| item[:datetime].to_date }
+      group_by_days = list.group_by { |item| item[:dt].to_date }
       days = []
 
       group_by_days.each do |day, temps|

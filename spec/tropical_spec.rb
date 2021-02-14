@@ -19,16 +19,16 @@ RSpec.describe Tropical::OpenWeatherMap do
       it "return correct values" do
         expect(subject.list).to eq(
           [
-            { datetime: Time.new(2021, 2, 13, 15), temp: 21.86, description: "chuva moderada" },
-            { datetime: Time.new(2021, 2, 13, 18), temp: 21.46, description: "chuva leve" },
-            { datetime: Time.new(2021, 2, 13, 21), temp: 19.04, description: "chuva leve" },
-            { datetime: Time.new(2021, 2, 14,  0), temp: 18.18, description: "nublado" },
-            { datetime: Time.new(2021, 2, 14,  3), temp: 17.51, description: "nublado" },
-            { datetime: Time.new(2021, 2, 14,  6), temp: 17.1,  description: "nublado" },
-            { datetime: Time.new(2021, 2, 14,  9), temp: 22.44, description: "nublado" },
-            { datetime: Time.new(2021, 2, 14, 12), temp: 25.16, description: "chuva leve" },
-            { datetime: Time.new(2021, 2, 14, 15), temp: 26,    description: "chuva leve" },
-            { datetime: Time.new(2021, 2, 14, 18), temp: 23.34, description: "chuva leve" }
+            { dt: Time.new(2021, 2, 13, 15), temp: 21.86, description: "chuva moderada" },
+            { dt: Time.new(2021, 2, 13, 18), temp: 21.46, description: "chuva leve" },
+            { dt: Time.new(2021, 2, 13, 21), temp: 19.04, description: "chuva leve" },
+            { dt: Time.new(2021, 2, 14,  0), temp: 18.18, description: "nublado" },
+            { dt: Time.new(2021, 2, 14,  3), temp: 17.51, description: "nublado" },
+            { dt: Time.new(2021, 2, 14,  6), temp: 17.1,  description: "nublado" },
+            { dt: Time.new(2021, 2, 14,  9), temp: 22.44, description: "nublado" },
+            { dt: Time.new(2021, 2, 14, 12), temp: 25.16, description: "chuva leve" },
+            { dt: Time.new(2021, 2, 14, 15), temp: 26,    description: "chuva leve" },
+            { dt: Time.new(2021, 2, 14, 18), temp: 23.34, description: "chuva leve" }
           ]
         )
       end
