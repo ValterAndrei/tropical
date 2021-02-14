@@ -17,7 +17,7 @@ RSpec.describe Tropical::OpenWeatherMap do
 
     describe "#list" do
       it "return correct values" do
-        expect(subject.list).to eq(
+        expect(subject.send(:list)).to eq(
           [
             { dt: Time.new(2021, 2, 13, 15), temp: 21.86, description: "chuva moderada" },
             { dt: Time.new(2021, 2, 13, 18), temp: 21.46, description: "chuva leve" },
@@ -36,7 +36,7 @@ RSpec.describe Tropical::OpenWeatherMap do
 
     describe "#average_temp_by_days" do
       it "return correct values" do
-        expect(subject.average_temp_by_days).to eq(
+        expect(subject.send(:average_temp_by_days)).to eq(
           [
             { day: Date.new(2021, 2, 13), average: 21 },
             { day: Date.new(2021, 2, 14), average: 21 }

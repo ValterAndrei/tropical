@@ -1,8 +1,6 @@
 # Tropical
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/tropical`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Gem to consultation weather forecast up to 5 days.
 
 ## Installation
 
@@ -10,9 +8,6 @@ Add this line to your application's Gemfile:
 
 ```ruby
 gem 'tropical', '~> 0.1.7'
-
-# or
-gem 'tropical', git: 'https://github.com/valterandrei/tropical', branch: 'main'
 ```
 
 And then execute:
@@ -21,7 +16,75 @@ And then execute:
 
 ## Usage
 
-TODO: Write usage instructions here
+Ruby API
+```ruby
+tropical = Tropical::OpenWeatherMap.new(
+  {
+    appid: 'your_api_key', # required
+    q:     'São Paulo',    # required
+    lang:  'pt_br',        # optional
+    units: 'metric',       # optional
+    cnt:   '50'            # optional
+  }
+)
+```
+For more information about the params: [openweathermap](https://openweathermap.org/forecast5)
+
+- City name
+```ruby
+tropical.city
+
+# => "São Paulo"
+```
+
+- Current date
+```ruby
+tropical.current_date
+
+# => 2021-02-14 18:00:00 -0300
+```
+
+- Current temperature
+```ruby
+tropical.current_temp
+
+# => 26.92
+```
+
+- Current weather
+```ruby
+tropical.current_weather
+
+# => "chuva moderada"
+```
+
+- Scale
+```ruby
+tropical.scale
+
+# => "°C"
+```
+
+- Full sumary
+```ruby
+tropical.full_sumary
+
+# => "27°C e chuva moderada em São Paulo em 14/02. Média para os próximos dias: 26°C em 14/02, 26°C em 15/02, 26°C em 16/02, 26°C em 17/02, 25°C em 18/02 e 24°C em 19/02."
+```
+
+- Sumary current day
+```ruby
+tropical.sumary_current_day
+
+# => "27°C e chuva moderada em São Paulo em 14/02."
+```
+
+- Sumary days forecast
+```ruby
+tropical.sumary_days_forecast
+
+# => "26°C em 14/02, 26°C em 15/02, 26°C em 16/02, 26°C em 17/02, 25°C em 18/02 e 24°C em 19/02." 
+```
 
 ## Development
 

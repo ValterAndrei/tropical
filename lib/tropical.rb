@@ -62,29 +62,6 @@ module Tropical
       "#{list.to_sentence(words_connector: ", ", last_word_connector: " e ")}."
     end
 
-    def list
-      data["list"].map do |list_item|
-        {
-          dt: Time.at(list_item["dt"]),
-          temp: list_item["main"]["temp"],
-          description: list_item["weather"].first["description"]
-        }
-      end
-    end
-
-    def average_temp_by_days
-      group_by_days = list.group_by { |item| item[:dt].to_date }
-      days = []
-
-      group_by_days.each do |day, temps|
-        average = temps.sum { |time| time[:temp] } / temps.length
-
-        days << { day: day, average: average.round }
-      end
-
-      days
-    end
-
     private
 
     def request_params
@@ -111,6 +88,29 @@ module Tropical
               else
                 { error: response.message }
               end
+    end
+
+    def average_temp_by_days
+      group_by_days = list.group_by { |item| item[:dt].to_date }
+      days = []
+
+      group_by_days.each do |day, temps|
+        average = temps.sum { |time| time[:temp] } / temps.length
+
+        days << { day: day, average: average.round }
+      end
+
+      days
+    end
+
+    def list
+      data["list"].map do |list_item|
+        {
+          dt: Time.at(list_item["dt"]),
+          temp: list_item["main"]["temp"],
+          description: list_item["weather"].first["description"]
+        }
+      end
     end
 
     def post(request_params)
