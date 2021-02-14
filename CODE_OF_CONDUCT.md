@@ -69,8 +69,6 @@ Community leaders will follow these Community Impact Guidelines in determining t
 
 **Community Impact**: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior,  harassment of an individual, or aggression toward or disparagement of classes of individuals.
 
-**Consequence**: A permanent ban from any sort of public interaction within the community.
-
 ## Attribution
 
 This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 2.0,
