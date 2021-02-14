@@ -4,6 +4,8 @@ require "json"
 require "net/http"
 require "uri"
 
+Time.zone = "Brasilia"
+
 module Tropical
   class OpenWeatherMap
     BASE_URL = "https://api.openweathermap.org/data/2.5/forecast?".freeze
@@ -49,26 +51,26 @@ module Tropical
     end
 
     def sumary_current_day
-      "#{current_temp.round}#{scale} e #{current_weather} em #{city} em #{current_date.strftime("%d/%m")}."
+      "#{current_temp.round}#{scale} e #{current_weather} em "\
+      "#{city} em #{current_date.strftime("%d/%m")}."
     end
 
     def sumary_days_forecast
-      list = average_temp_by_days.map { |x| "#{x[:average]}#{scale} em #{x[:day].strftime("%d/%m")}" }
-      days_forecast = list.to_sentence(words_connector: ", ", last_word_connector: " e ")
+      list = average_temp_by_days.map do |x|
+        "#{x[:average]}#{scale} em #{x[:day].strftime("%d/%m")}"
+      end
 
-      "#{days_forecast}."
+      "#{list.to_sentence(words_connector: ", ", last_word_connector: " e ")}."
     end
 
     def list
-      data_list = data["list"].map do |list_item|
+      data["list"].map do |list_item|
         {
-          dt: Time.at(list_item["dt"]),
+          dt: Time.zone.at(list_item["dt"]),
           temp: list_item["main"]["temp"],
           description: list_item["weather"].first["description"]
         }
       end
-
-      data_list.sort_by { |x| x[:dt] }
     end
 
     def average_temp_by_days
