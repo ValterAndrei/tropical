@@ -7,10 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/set-timezone-action@v1.1
-      with:
-        timezoneLinux: America/Sao_Paulo
-  timezoneLinux: "Asia/Singapore"
+    - name: "Set Timezone"
+      inputs:
+        timezoneLinux: "America/Sao_Paulo"
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
