@@ -46,25 +46,25 @@ RSpec.describe Tropical::OpenWeatherMap do
     end
 
     describe "#current_date" do
-      it "return correct values" do
+      it "return correct value" do
         expect(subject.current_date).to eq(Time.new(2021, 2, 13, 15))
       end
     end
 
     describe "#current_temp" do
-      it "return correct values" do
+      it "return correct value" do
         expect(subject.current_temp).to eq(21.86)
       end
     end
 
     describe "#current_weather" do
-      it "return correct values" do
+      it "return correct value" do
         expect(subject.current_weather).to eq("chuva moderada")
       end
     end
 
     describe "#city" do
-      it "return correct values" do
+      it "return correct value" do
         expect(subject.city).to eq("Caconde")
       end
     end
@@ -97,18 +97,42 @@ RSpec.describe Tropical::OpenWeatherMap do
       end
     end
 
-    describe "#sumary" do
+    describe "#sumary_current_day" do
       let(:response_body) { File.read(File.expand_path("spec/fixtures/complete_response.json")) }
 
-      it "return correct values" do
-        expect(subject.sumary).to eq(
+      it "return correct value" do
+        expect(subject.sumary_current_day).to eq("23°C e chuva moderada em Caconde em 13/02.")
+      end
+    end
+
+    describe "#sumary_days_forecast" do
+      let(:response_body) { File.read(File.expand_path("spec/fixtures/complete_response.json")) }
+
+      it "return correct value" do
+        expect(subject.sumary_days_forecast).to eq(
+          "21°C em 13/02, "\
+          "21°C em 14/02, "\
+          "22°C em 15/02, "\
+          "22°C em 16/02, "\
+          "22°C em 17/02 e "\
+          "22°C em 18/02."
+        )
+      end
+    end
+
+    describe "#full_sumary" do
+      let(:response_body) { File.read(File.expand_path("spec/fixtures/complete_response.json")) }
+
+      it "return correct value" do
+        expect(subject.full_sumary).to eq(
           "23°C e chuva moderada em Caconde em 13/02. "\
           "Média para os próximos dias: "\
           "21°C em 13/02, "\
           "21°C em 14/02, "\
           "22°C em 15/02, "\
-          "22°C em 16/02 e "\
-          "22°C em 17/02."
+          "22°C em 16/02, "\
+          "22°C em 17/02 e "\
+          "22°C em 18/02."
         )
       end
     end
@@ -128,7 +152,7 @@ RSpec.describe Tropical::OpenWeatherMap do
 
     subject { described_class.new(params) }
 
-    it "return correct values" do
+    it "return correct value" do
       expect(subject.data).to eq({ error: "Unauthorized: appid is invalid." })
     end
 
@@ -147,7 +171,7 @@ RSpec.describe Tropical::OpenWeatherMap do
 
     subject { described_class.new(params) }
 
-    it "return correct values" do
+    it "return correct value" do
       expect(subject.data).to eq({ error: "Not Found" })
     end
 

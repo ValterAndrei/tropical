@@ -17,19 +17,6 @@ module Tropical
       load_data(response)
     end
 
-    def average_temp_by_days
-      group_by_days = list.group_by { |item| item[:datetime].to_date }
-      days = []
-
-      group_by_days.each do |day, temps|
-        average = temps.sum { |time| time[:temp] } / temps.length
-
-        days << { day: day, average: average.round }
-      end
-
-      days
-    end
-
     def city
       data["city"]["name"]
     end
@@ -46,6 +33,32 @@ module Tropical
       list.first[:description]
     end
 
+    def scale
+      units = params[:units]
+
+      return "°C" if units == "metric"
+      return "°F" if units == "imperial"
+
+      "°K"
+    end
+
+    def full_sumary
+      "#{sumary_current_day} "\
+      "Média para os próximos dias: "\
+      "#{sumary_days_forecast}"
+    end
+
+    def sumary_current_day
+      "#{current_temp.round}#{scale} e #{current_weather} em #{city} em #{current_date.strftime("%d/%m")}."
+    end
+
+    def sumary_days_forecast
+      list = average_temp_by_days.map { |x| "#{x[:average]}#{scale} em #{x[:day].strftime("%d/%m")}" }
+      days_forecast = list.to_sentence(words_connector: ", ", last_word_connector: " e ")
+
+      "#{days_forecast}."
+    end
+
     def list
       data["list"].map do |list_item|
         {
@@ -56,25 +69,17 @@ module Tropical
       end
     end
 
-    def scale
-      units = params[:units]
+    def average_temp_by_days
+      group_by_days = list.group_by { |item| item[:datetime].to_date }
+      days = []
 
-      return "°C" if units == "metric"
-      return "°F" if units == "imperial"
+      group_by_days.each do |day, temps|
+        average = temps.sum { |time| time[:temp] } / temps.length
 
-      "°K"
-    end
+        days << { day: day, average: average.round }
+      end
 
-    def sumary
-      message = format_message
-
-      "#{message.current_temp}#{scale} e #{current_weather} em #{city} em #{message.current_date}. "\
-      "Média para os próximos dias: "\
-      "#{message.first_day_average}#{scale} em #{message.first_day_date}, "\
-      "#{message.second_day_average}#{scale} em #{message.second_day_date}, "\
-      "#{message.third_day_average}#{scale} em #{message.third_day_date}, "\
-      "#{message.fourth_day_average}#{scale} em #{message.fourth_day_date} "\
-      "e #{message.fifth_day_average}#{scale} em #{message.fifth_day_date}."
+      days
     end
 
     private
@@ -87,23 +92,6 @@ module Tropical
       end
 
       BASE_URL + link
-    end
-
-    def format_message
-      OpenStruct.new(
-        current_temp: current_temp.round,
-        current_date: current_date.strftime("%d/%m"),
-        first_day_average: average_temp_by_days[0][:average],
-        first_day_date: average_temp_by_days[0][:day].strftime("%d/%m"),
-        second_day_average: average_temp_by_days[1][:average],
-        second_day_date: average_temp_by_days[1][:day].strftime("%d/%m"),
-        third_day_average: average_temp_by_days[2][:average],
-        third_day_date: average_temp_by_days[2][:day].strftime("%d/%m"),
-        fourth_day_average: average_temp_by_days[3][:average],
-        fourth_day_date: average_temp_by_days[3][:day].strftime("%d/%m"),
-        fifth_day_average: average_temp_by_days[4][:average],
-        fifth_day_date: average_temp_by_days[4][:day].strftime("%d/%m")
-      )
     end
 
     def load_data(response)
