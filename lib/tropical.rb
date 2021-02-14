@@ -4,8 +4,6 @@ require "json"
 require "net/http"
 require "uri"
 
-Time.zone = "Brasilia"
-
 module Tropical
   class OpenWeatherMap
     BASE_URL = "https://api.openweathermap.org/data/2.5/forecast?".freeze
