@@ -13,7 +13,8 @@ Gem::Specification.new do |spec|
   spec.homepage    = "https://github.com/ValterAndrei/tropical"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
 
-  spec.metadata["allowed_push_host"] = "https://rubygems.org"
+  # spec.metadata["allowed_push_host"] = "https://rubygems.org"
+  spec.metadata["allowed_push_host"] = "https://rubygems.pkg.github.com/ValterAndrei"
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/ValterAndrei/tropical"
   spec.metadata["changelog_uri"] = "https://github.com/ValterAndrei/tropical"
