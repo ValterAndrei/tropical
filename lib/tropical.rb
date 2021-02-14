@@ -1,6 +1,7 @@
 require "active_support/all"
 require "date"
 require "json"
+require "i18n"
 require "net/http"
 require "uri"
 
@@ -64,7 +65,7 @@ module Tropical
     def list
       data["list"].map do |list_item|
         {
-          dt: Time.zone.at(list_item["dt"]),
+          dt: Time.at(list_item["dt"]),
           temp: list_item["main"]["temp"],
           description: list_item["weather"].first["description"]
         }
@@ -90,10 +91,14 @@ module Tropical
       link = ""
 
       params.each do |k, v|
-        link += "&#{k}=#{v}" if v.is_a?(String) && v.present?
+        link += "&#{k}=#{remove_accents(v)}" if v.is_a?(String) && v.present?
       end
 
       BASE_URL + link
+    end
+
+    def remove_accents(value)
+      I18n.transliterate(value)
     end
 
     def load_data(response)
