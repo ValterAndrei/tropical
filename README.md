@@ -1,6 +1,6 @@
 # Tropical
 
-Gem to consultation weather forecast up to 5 days.
+Gem to search weather forecast for 5 days:
 
 ## Installation
 
