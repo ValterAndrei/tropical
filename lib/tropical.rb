@@ -68,14 +68,13 @@ module Tropical
       link = ""
 
       params.each do |k, v|
-        link += "&#{k}=#{remove_accents(v)}" if v.is_a?(String) && v.present?
+        next if k == :mode
+        next unless v.is_a?(String) && v.present?
+
+        link += "&#{k}=#{I18n.transliterate(v)}"
       end
 
       BASE_URL + link
-    end
-
-    def remove_accents(value)
-      I18n.transliterate(value)
     end
 
     def load_data(response)

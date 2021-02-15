@@ -30,6 +30,8 @@ tropical = Tropical::OpenWeatherMap.new(
 ```
 For more information about the params: [openweathermap](https://openweathermap.org/forecast5)
 
+Note: The `mode` param is not avaible.
+
 - City name
 ```ruby
 tropical.city
