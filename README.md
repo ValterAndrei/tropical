@@ -7,7 +7,7 @@ Gem to consultation weather forecast up to 5 days.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'tropical', '~> 0.1.7'
+gem 'tropical', '~> 0.1.8'
 ```
 
 And then execute:
@@ -34,9 +34,30 @@ Note: The `mode` param is not avaible.
 
 - City name
 ```ruby
-tropical.city
+tropical.city_name
 
 # => "São Paulo"
+```
+
+- Population
+```ruby
+tropical.population
+
+# => 10021295
+```
+
+- Country
+```ruby
+tropical.country
+
+# => "BR"
+```
+
+- Timezone
+```ruby
+tropical.timezone
+
+# => -3
 ```
 
 - Current date
@@ -44,6 +65,20 @@ tropical.city
 tropical.current_date
 
 # => 2021-02-14 18:00:00 -0300
+```
+
+- Coord
+```ruby
+tropical.coord
+
+# => {:lat=>-23.5475, :lon=>-46.6361}
+```
+
+- Scale
+```ruby
+tropical.scale
+
+# => "°C"
 ```
 
 - Current temperature
@@ -58,13 +93,6 @@ tropical.current_temp
 tropical.current_weather
 
 # => "chuva moderada"
-```
-
-- Scale
-```ruby
-tropical.scale
-
-# => "°C"
 ```
 
 - Full sumary

@@ -63,9 +63,33 @@ RSpec.describe Tropical::OpenWeatherMap do
       end
     end
 
-    describe "#city" do
+    describe "#city_name" do
       it "return correct value" do
-        expect(subject.city).to eq("Caconde")
+        expect(subject.city_name).to eq("Caconde")
+      end
+    end
+
+    describe "#country" do
+      it "return correct value" do
+        expect(subject.country).to eq("BR")
+      end
+    end
+
+    describe "#population" do
+      it "return correct value" do
+        expect(subject.population).to eq(12_434)
+      end
+    end
+
+    describe "#timezone" do
+      it "return correct value" do
+        expect(subject.timezone).to eq(-3)
+      end
+    end
+
+    describe "#coord" do
+      it "return correct value" do
+        expect(subject.coord).to eq({ lat: -21.5294, lon: -46.6439 })
       end
     end
 

@@ -18,8 +18,24 @@ module Tropical
       load_data(response)
     end
 
-    def city
+    def city_name
       data["city"]["name"]
+    end
+
+    def country
+      data["city"]["country"]
+    end
+
+    def population
+      data["city"]["population"]
+    end
+
+    def timezone
+      Time.at(data["city"]["timezone"]).zone.to_i
+    end
+
+    def coord
+      data["city"]["coord"].transform_keys(&:to_sym)
     end
 
     def current_date
@@ -51,7 +67,7 @@ module Tropical
 
     def sumary_current_day
       "#{current_temp.round}#{scale} e #{current_weather} em "\
-      "#{city} em #{current_date.strftime("%d/%m")}."
+      "#{city_name} em #{current_date.strftime("%d/%m")}."
     end
 
     def sumary_days_forecast
