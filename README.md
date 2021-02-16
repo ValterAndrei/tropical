@@ -1,5 +1,7 @@
 # Tropical
 
+![Ruby Gem](https://github.com/ValterAndrei/tropical/workflows/Ruby%20Gem/badge.svg)
+
 Gem to search weather forecast for 5 days:
 
 ## Installation
@@ -7,7 +9,7 @@ Gem to search weather forecast for 5 days:
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'tropical', '~> 0.1.8'
+gem 'tropical', '~> 0.1.9'
 ```
 
 And then execute:
