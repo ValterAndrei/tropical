@@ -1,5 +1,7 @@
 # Tropical
 
+![Ruby Gem](https://github.com/ValterAndrei/tropical/workflows/Ruby%20Gem/badge.svg)
+
 Gem to search weather forecast for 5 days:
 
 ## Installation
