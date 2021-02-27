@@ -121,7 +121,7 @@ module Tropical
     def list
       data["list"].map do |list_item|
         {
-          dt: Time.at(list_item["dt"]),
+          dt: Time.at(list_item["dt"]).in_time_zone("America/Sao_Paulo"),
           temp: list_item["main"]["temp"],
           description: list_item["weather"].first["description"]
         }
