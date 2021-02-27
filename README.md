@@ -9,7 +9,7 @@ Gem to search weather forecast for 5 days:
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'tropical', '~> 0.1.9'
+gem 'tropical', '~> 0.2.0'
 ```
 
 And then execute:
@@ -53,13 +53,6 @@ tropical.population
 tropical.country
 
 # => "BR"
-```
-
-- Timezone
-```ruby
-tropical.timezone
-
-# => -3
 ```
 
 - Current date

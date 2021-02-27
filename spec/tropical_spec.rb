@@ -81,12 +81,6 @@ RSpec.describe Tropical::OpenWeatherMap do
       end
     end
 
-    describe "#timezone" do
-      it "return correct value" do
-        expect(subject.timezone).to eq(0)
-      end
-    end
-
     describe "#coord" do
       it "return correct value" do
         expect(subject.coord).to eq({ lat: -21.5294, lon: -46.6439 })

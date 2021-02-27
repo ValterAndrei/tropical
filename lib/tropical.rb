@@ -30,10 +30,6 @@ module Tropical
       data["city"]["population"]
     end
 
-    def timezone
-      Time.at(data["city"]["timezone"]).utc.zone.to_i
-    end
-
     def coord
       data["city"]["coord"].transform_keys(&:to_sym)
     end
