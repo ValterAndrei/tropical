@@ -3,7 +3,7 @@ name: Ruby Gem
 on:
   push:
     branches:
-      - main
+      - test-ci
     paths-ignore:
       - README.md
 
@@ -18,6 +18,15 @@ jobs:
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 2.6.x
+
+    - name: Run the default task
+      run: |
+        gem install bundler -v 2.2.9
+        bundle install
+        bundle exec rake
+
+    - name: Test
+      run: bundle exec rspec
 
     # - name: Publish to GPR
     #   run: |
