@@ -19,16 +19,16 @@ RSpec.describe Tropical::OpenWeatherMap do
       it "return correct values" do
         expect(subject.send(:list)).to eq(
           [
-            { dt: Time.new(2021, 2, 13, 15).in_time_zone("America/Sao_Paulo"), temp: 21.86, description: "chuva moderada" },
-            { dt: Time.new(2021, 2, 13, 18).in_time_zone("America/Sao_Paulo"), temp: 21.46, description: "chuva leve" },
-            { dt: Time.new(2021, 2, 13, 21).in_time_zone("America/Sao_Paulo"), temp: 19.04, description: "chuva leve" },
-            { dt: Time.new(2021, 2, 14,  0).in_time_zone("America/Sao_Paulo"), temp: 18.18, description: "nublado" },
-            { dt: Time.new(2021, 2, 14,  3).in_time_zone("America/Sao_Paulo"), temp: 17.51, description: "nublado" },
-            { dt: Time.new(2021, 2, 14,  6).in_time_zone("America/Sao_Paulo"), temp: 17.1,  description: "nublado" },
-            { dt: Time.new(2021, 2, 14,  9).in_time_zone("America/Sao_Paulo"), temp: 22.44, description: "nublado" },
-            { dt: Time.new(2021, 2, 14, 12).in_time_zone("America/Sao_Paulo"), temp: 25.16, description: "chuva leve" },
-            { dt: Time.new(2021, 2, 14, 15).in_time_zone("America/Sao_Paulo"), temp: 26,    description: "chuva leve" },
-            { dt: Time.new(2021, 2, 14, 18).in_time_zone("America/Sao_Paulo"), temp: 23.34, description: "chuva leve" }
+            { dt: Time.new(2021, 2, 13, 18).in_time_zone("America/Sao_Paulo"), temp: 21.86, description: "chuva moderada" },
+            { dt: Time.new(2021, 2, 13, 21).in_time_zone("America/Sao_Paulo"), temp: 21.46, description: "chuva leve" },
+            { dt: Time.new(2021, 2, 13,  0).in_time_zone("America/Sao_Paulo"), temp: 19.04, description: "chuva leve" },
+            { dt: Time.new(2021, 2, 14,  3).in_time_zone("America/Sao_Paulo"), temp: 18.18, description: "nublado" },
+            { dt: Time.new(2021, 2, 14,  6).in_time_zone("America/Sao_Paulo"), temp: 17.51, description: "nublado" },
+            { dt: Time.new(2021, 2, 14,  9).in_time_zone("America/Sao_Paulo"), temp: 17.1,  description: "nublado" },
+            { dt: Time.new(2021, 2, 14, 12).in_time_zone("America/Sao_Paulo"), temp: 22.44, description: "nublado" },
+            { dt: Time.new(2021, 2, 14, 15).in_time_zone("America/Sao_Paulo"), temp: 25.16, description: "chuva leve" },
+            { dt: Time.new(2021, 2, 14, 18).in_time_zone("America/Sao_Paulo"), temp: 26,    description: "chuva leve" },
+            { dt: Time.new(2021, 2, 14, 21).in_time_zone("America/Sao_Paulo"), temp: 23.34, description: "chuva leve" }
           ]
         )
       end
