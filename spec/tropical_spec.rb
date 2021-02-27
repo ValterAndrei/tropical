@@ -4,7 +4,7 @@ require "json"
 
 RSpec.describe Tropical::OpenWeatherMap do
   describe "when the request is successful" do
-    before { allow(Time).to receive(:now).and_return(Time.now.utc) }
+    before { allow(Time).to receive(:now).and_return(Time.now.in_time_zone("America/Sao_Paulo")) }
 
     before do
       response = Net::HTTPSuccess.new(1.0, "200", "OK")
