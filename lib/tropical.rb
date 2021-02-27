@@ -31,7 +31,7 @@ module Tropical
     end
 
     def timezone
-      Time.at(data["city"]["timezone"]).zone.to_i
+      Time.at(data["city"]["timezone"]).utc.zone.to_i
     end
 
     def coord
@@ -39,7 +39,7 @@ module Tropical
     end
 
     def current_date
-      list.first[:dt]
+      list.first[:dt].utc
     end
 
     def current_temp

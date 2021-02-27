@@ -83,7 +83,7 @@ RSpec.describe Tropical::OpenWeatherMap do
 
     describe "#timezone" do
       it "return correct value" do
-        expect(subject.timezone).to eq(-3)
+        expect(subject.timezone).to eq(0)
       end
     end
 
