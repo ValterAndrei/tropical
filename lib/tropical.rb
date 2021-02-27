@@ -39,7 +39,7 @@ module Tropical
     end
 
     def current_date
-      list.first[:dt].utc
+      list.first[:dt]
     end
 
     def current_temp
