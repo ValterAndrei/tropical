@@ -19,16 +19,16 @@ RSpec.describe Tropical::OpenWeatherMap do
       it "return correct values" do
         expect(subject.send(:list)).to eq(
           [
-            { dt: Time.new(2021, 2, 13, 15).utc, temp: 21.86, description: "chuva moderada" },
-            { dt: Time.new(2021, 2, 13, 18).utc, temp: 21.46, description: "chuva leve" },
-            { dt: Time.new(2021, 2, 13, 21).utc, temp: 19.04, description: "chuva leve" },
-            { dt: Time.new(2021, 2, 14,  0).utc, temp: 18.18, description: "nublado" },
-            { dt: Time.new(2021, 2, 14,  3).utc, temp: 17.51, description: "nublado" },
-            { dt: Time.new(2021, 2, 14,  6).utc, temp: 17.1,  description: "nublado" },
-            { dt: Time.new(2021, 2, 14,  9).utc, temp: 22.44, description: "nublado" },
-            { dt: Time.new(2021, 2, 14, 12).utc, temp: 25.16, description: "chuva leve" },
-            { dt: Time.new(2021, 2, 14, 15).utc, temp: 26,    description: "chuva leve" },
-            { dt: Time.new(2021, 2, 14, 18).utc, temp: 23.34, description: "chuva leve" }
+            { dt: Time.new(2021, 2, 13, 18, 0, 0, 0), temp: 21.86, description: "chuva moderada" },
+            { dt: Time.new(2021, 2, 13, 21, 0, 0, 0), temp: 21.46, description: "chuva leve" },
+            { dt: Time.new(2021, 2, 14,  0, 0, 0, 0), temp: 19.04, description: "chuva leve" },
+            { dt: Time.new(2021, 2, 14,  3, 0, 0, 0), temp: 18.18, description: "nublado" },
+            { dt: Time.new(2021, 2, 14,  6, 0, 0, 0), temp: 17.51, description: "nublado" },
+            { dt: Time.new(2021, 2, 14,  9, 0, 0, 0), temp: 17.1,  description: "nublado" },
+            { dt: Time.new(2021, 2, 14, 12, 0, 0, 0), temp: 22.44, description: "nublado" },
+            { dt: Time.new(2021, 2, 14, 15, 0, 0, 0), temp: 25.16, description: "chuva leve" },
+            { dt: Time.new(2021, 2, 14, 18, 0, 0, 0), temp: 26,    description: "chuva leve" },
+            { dt: Time.new(2021, 2, 14, 21, 0, 0, 0), temp: 23.34, description: "chuva leve" }
           ]
         )
       end
@@ -47,7 +47,7 @@ RSpec.describe Tropical::OpenWeatherMap do
 
     describe "#current_date" do
       it "return correct value" do
-        expect(subject.current_date).to eq(Time.new(2021, 2, 13, 15).utc)
+        expect(subject.current_date).to eq(Time.new(2021, 2, 13, 18, 0, 0, 0))
       end
     end
 
